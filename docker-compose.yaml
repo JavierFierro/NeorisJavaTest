@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  cliente:
+    container_name: cliente
+    build:
+      context: ./
+      dockerfile: ./Cliente-NeorisTest/Dockerfile
+    ports:
+      - "8000:8080"
+    networks:
+      - spring
+    depends_on:
+      - cuentas-movimientos
+
+  cuentas-movimientos:
+    container_name: cuentas-movimientos
+    build:
+      context: ./
+      dockerfile: ./Cuentas-NeorisTest/Dockerfile
+    ports:
+      - "8001:8081"
+    networks:
+      - spring
+networks:
+  spring:
+    name: spring
